@@ -1,6 +1,6 @@
 <template>
   <div
-    class="md:!hidden w-full flex justify-around fixed bottom-0 card-shadow min-h-10 items-center"
+    class="md:!hidden w-full flex justify-around fixed bottom-0 card-shadow min-h-10 items-center bg-white"
   >
     <RouterLink to="/">
       <span
@@ -22,7 +22,7 @@
         >shopping_cart</span
       >
     </RouterLink>
-    <RouterLink to="/profile">
+    <RouterLink :to="authStore.isLoggedIn ? '/profile' : '/login'">
       <span
         :class="[
           'text-3xl text-neutral-700',
@@ -37,7 +37,10 @@
 </template>
 
 <script setup lang="ts">
+import { useAuthStore } from "auth/AuthStore";
 import { useRoute } from "vue-router";
+
+const authStore = useAuthStore();
 
 const path = useRoute();
 </script>
