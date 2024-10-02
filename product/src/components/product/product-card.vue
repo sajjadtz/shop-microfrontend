@@ -1,5 +1,9 @@
 <template>
-  <div class="card-shadow rounded-2xl flex flex-col md:h-[250px] h-[350px] overflow-hidden gap-1">
+  <!-- {{ cart }}
+  {{ cartItemCount }} -->
+  <div
+    class="card-shadow rounded-2xl flex flex-col md:h-[250px] h-[350px] overflow-hidden gap-1"
+  >
     <img
       :src="product?.imageUrl"
       height="250"
@@ -7,16 +11,44 @@
     />
     <div class="flex flex-col gap-1 p-3 pt-0">
       <span class="text-sm">{{ product?.name }}</span>
-      <span class="text-sm">$ {{ Number(product?.price).toLocaleString() }}</span>
+      <span class="text-sm"
+        >$ {{ Number(product?.price).toLocaleString() }}</span
+      >
     </div>
+    <n-button
+      strong
+      secondary
+      type="info"
+      @click="
+        () =>
+          handleChangeItem({
+            productId: product?.id,
+            count: 1,
+          })
+      "
+      >add to cart {{ cartItemCount }}</n-button
+    >
   </div>
 </template>
 
 <script setup lang="ts">
-import { PropType } from "vue";
+import { PropType, computed, watch } from "vue";
 import { Product } from "../../composables/product/types/product.type";
+import { NButton } from "naive-ui";
+import { useCartStore } from "order/CartStore";
+import { useChangeItem } from "order/useCart";
 
 const props = defineProps({
   product: Object as PropType<Product>,
 });
+
+const cartStore = useCartStore();
+const { handleChangeItem } = useChangeItem();
+const cart = computed(() => cartStore.getCart);
+
+const cartItemCount = computed(
+  () =>
+    cart.value?.items.find((item) => item.product.id === props.product.id)
+      ?.count
+);
 </script>

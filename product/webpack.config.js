@@ -70,6 +70,7 @@ module.exports = (_, argv) => ({
       filename: "remoteEntry.js",
       remotes: {
         auth: "auth@http://localhost:3005/remoteEntry.js",
+        order: "order@http://localhost:3003/remoteEntry.js",
       },
       exposes: {
         "./ProductList": "./src/components/product/product-list.vue",
