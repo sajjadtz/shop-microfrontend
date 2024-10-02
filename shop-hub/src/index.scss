@@ -1,0 +1,13 @@
+@import "material-icons/iconfont/material-icons.scss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.card-shadow {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
