@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-import { useAuthStore } from 'auth/AuthStore';
+import { useAuthStore } from "auth/AuthStore";
 
 const axiosClient = axios.create({
   baseURL: process.env.BASE_URL,
@@ -13,10 +13,7 @@ axiosClient.interceptors.response.use(
   async (error) => {
     const authStore = useAuthStore();
 
-    if (
-      error.response?.status === 401 &&
-      window.location.pathname !== "/login"
-    ) {
+    if (error.response?.status === 401) {
       authStore.logout();
     }
 

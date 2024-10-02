@@ -19,7 +19,7 @@
         type="info"
         @click="handleSubmit"
       >
-        Submit
+        Update
       </n-button>
     </div>
   </div>
