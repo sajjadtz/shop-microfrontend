@@ -72,6 +72,7 @@ module.exports = (_, argv) => ({
         user: "user@http://localhost:3004/remoteEntry.js",
         auth: "auth@http://localhost:3005/remoteEntry.js",
         product: "product@http://localhost:3002/remoteEntry.js",
+        order: "order@http://localhost:3003/remoteEntry.js",
       },
       exposes: {},
       shared: require("./package.json").dependencies,
