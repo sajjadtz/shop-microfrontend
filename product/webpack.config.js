@@ -1,10 +1,10 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const { VueLoaderPlugin } = require("vue-loader");
-const path = require('path');
-const Dotenv = require('dotenv-webpack');
+const path = require("path");
+const Dotenv = require("dotenv-webpack");
 
-const printCompilationMessage = require('./compilation.config.js');
+const printCompilationMessage = require("./compilation.config.js");
 
 module.exports = (_, argv) => ({
   output: {
@@ -18,22 +18,22 @@ module.exports = (_, argv) => ({
   devServer: {
     port: 3002,
     historyApiFallback: true,
-    watchFiles: [path.resolve(__dirname, 'src')],
+    watchFiles: [path.resolve(__dirname, "src")],
     onListening: function (devServer) {
-      const port = devServer.server.address().port
+      const port = devServer.server.address().port;
 
-      printCompilationMessage('compiling', port)
+      printCompilationMessage("compiling", port);
 
-      devServer.compiler.hooks.done.tap('OutputMessagePlugin', (stats) => {
+      devServer.compiler.hooks.done.tap("OutputMessagePlugin", (stats) => {
         setImmediate(() => {
           if (stats.hasErrors()) {
-            printCompilationMessage('failure', port)
+            printCompilationMessage("failure", port);
           } else {
-            printCompilationMessage('success', port)
+            printCompilationMessage("success", port);
           }
-        })
-      })
-    }
+        });
+      });
+    },
   },
 
   module: {
@@ -68,13 +68,17 @@ module.exports = (_, argv) => ({
     new ModuleFederationPlugin({
       name: "product",
       filename: "remoteEntry.js",
-      remotes: {},
-      exposes: {},
+      remotes: {
+        auth: "auth@http://localhost:3005/remoteEntry.js",
+      },
+      exposes: {
+        "./ProductList": "./src/components/product/product-list.vue",
+      },
       shared: require("./package.json").dependencies,
     }),
     new HtmlWebPackPlugin({
       template: "./src/index.html",
     }),
-    new Dotenv()
+    new Dotenv(),
   ],
 });

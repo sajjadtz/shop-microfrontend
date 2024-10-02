@@ -1,14 +1,9 @@
 <template>
-  <div class="mt-10 text-3xl mx-auto max-w-6xl">
-    <div>Name: product</div>
-    <div>Framework: vue3</div>
-    <div>Language: TypeScript</div>
-    <div>CSS: Tailwind</div>
+  <div class="mt-3 text-3xl mx-auto max-w-6xl">
+    <product-list />
   </div>
 </template>
 
-<script lang="ts">
-  import { defineComponent } from 'vue'
-
-  export default defineComponent({});
+<script setup lang="ts">
+import ProductList from "./components/product/product-list.vue";
 </script>
