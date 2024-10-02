@@ -4,7 +4,7 @@ import { User } from "./types/user.type";
 
 export const useAuthService = (data: User) => {
   return useFetchData<AuthState>(
-    `/v1/auth/login-by-password`,
+    `/v1/user/login`,
     { method: "post", data },
     false
   );
