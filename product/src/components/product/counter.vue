@@ -12,8 +12,9 @@
             count: count + 1,
           })
       "
-      >+</n-button
     >
+      +
+    </n-button>
     <span class="font-bold">{{ count }}</span>
     <n-button
       strong
@@ -27,8 +28,9 @@
             count: count - 1,
           })
       "
-      >-</n-button
     >
+      -
+    </n-button>
   </div>
 </template>
 

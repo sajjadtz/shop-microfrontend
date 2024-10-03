@@ -14,6 +14,7 @@ export const useCartStore = defineStore("cart", {
     getCart: (state) => state.cart,
   },
   actions: {
+    // get cart data
     setCart(cart: Cart) {
       this.cart = cart;
     },
@@ -25,14 +26,6 @@ export const useCartStore = defineStore("cart", {
           this.setCart(response);
         }
       });
-    },
-    // checkout cart(empty the cart items)
-    checkout() {
-      if (this.cart)
-        this.setCart({
-          ...this.cart,
-          items: [],
-        });
     },
   },
 });

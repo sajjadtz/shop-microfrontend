@@ -39,6 +39,7 @@ const props = defineProps({
 });
 
 const cartStore = useCartStore();
+
 const { handleCheckoutCart } = useCheckoutCart(props.checkoutCallbackFn);
 
 const cart = computed(() => cartStore.getCart);

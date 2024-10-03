@@ -12,7 +12,7 @@ export const useAuth = () => {
     
     // check login response
     if (response) {
-      // update global store
+      // update auth global store
       login(response)
     }
   };

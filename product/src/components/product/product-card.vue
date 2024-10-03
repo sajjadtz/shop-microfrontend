@@ -6,14 +6,14 @@
       :src="product?.imageUrl"
       height="250"
       width="100%"
-      class="overflow-hidden "
+      class="overflow-hidden"
       object-fit="cover"
     />
     <div class="flex flex-col gap-1 p-3 pt-0">
       <span class="text-sm">{{ product?.name }}</span>
-      <span class="text-sm"
-        >$ {{ Number(product?.price).toLocaleString() }}</span
-      >
+      <span class="text-sm">
+        $ {{ Number(product?.price).toLocaleString() }}
+      </span>
     </div>
     <n-button
       v-if="cartItemCount === 0"

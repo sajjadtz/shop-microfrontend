@@ -12,9 +12,12 @@ export const useChangeItem = () => {
     const fetchData = useChangeItemService(body);
     const cartStore = useCartStore();
 
+    // send request for changing an item in cart
     const response = await fetchData();
 
+    // check response
     if (response) {
+      // update cart global store
       cartStore.setCart(response);
     }
   };
@@ -29,10 +32,15 @@ export const useCheckoutCart = (callbackFn?: Function) => {
     const fetchData = useCheckoutCartService();
     const cartStore = useCartStore();
 
+    // send checkout request for checkout cart and create order
     const response = await fetchData();
 
+    // check response
     if (response) {
+      // update cart global store
       cartStore.setCart(response);
+
+      // check if callbackFn provided and then call it
       if (callbackFn) callbackFn();
     }
     return response;
