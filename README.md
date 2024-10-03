@@ -134,6 +134,7 @@ remotes: {
 
 ## Installation and Setup
 
+### Manual Setup
 Each micro frontend is an independent project, so follow the steps below to get started:
 
 1. **Clone the repository**:
@@ -166,9 +167,39 @@ Each micro frontend is an independent project, so follow the steps below to get 
    - `user` on `http://localhost:3004`
    - `auth` on `http://localhost:3005`
 
+### Easier Setup Using Docker
+
+For a simplified and faster setup, you can use Docker Compose to run the entire system with a single command. This method automatically installs dependencies and starts all micro frontends.
+
+1. Ensure you have **Docker** and **Docker Compose** installed.
+
+2. Run the following command in the root directory of the project (where the `docker-compose.yml` file is located):
+   ```bash
+   docker-compose up -d
+   ```
+
+3. Once the process completes, the main project will be available at `http://localhost:3001`.
+
+   Docker Compose will handle the following:
+   - Install dependencies for each micro frontend.
+   - Start the development server for each micro frontend.
+
+
 ## Usage
 
 After starting all the micro frontends and the main project, navigate to `http://localhost:3001` to interact with the platform. The micro frontends will be dynamically loaded as needed, and the shared stores (e.g., `AuthStore`, `CartStore`) will provide seamless integration across the entire platform.
+
+### Test Users
+For testing purposes, you can use the following credentials:
+
+- **Admin User**: 
+  - Username: `admin`
+  - Password: `admin`
+  
+- **Customer User**: 
+  - Username: `customer`
+  - Password: `customer`
+
 
 ## Module Federation Configuration
 

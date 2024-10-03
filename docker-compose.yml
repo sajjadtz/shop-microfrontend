@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  # Main project (Shop Hub)
+  shop-hub:
+    image: node:20.6.1
+    container_name: shop-hub
+    build:
+      context: ./shop-hub
+    working_dir: /app
+    command: sh -c "npm install && npm run start"
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./shop-hub:/app
+    depends_on:
+      - auth
+      - order
+      - user
+      - product
+
+  # Auth Micro Frontend
+  auth:
+    image: node:20.6.1
+    container_name: auth
+    build:
+      context: ./auth
+    working_dir: /app
+    command: sh -c "npm install && npm run start"
+    ports:
+      - "3005:3005"
+    volumes:
+      - ./auth:/app
+
+  # Order Micro Frontend
+  order:
+    image: node:20.6.1
+    container_name: order
+    build:
+      context: ./order
+    working_dir: /app
+    command: sh -c "npm install && npm run start"
+    ports:
+      - "3003:3003"
+    volumes:
+      - ./order:/app
+
+  # User Micro Frontend
+  user:
+    image: node:20.6.1
+    container_name: user
+    build:
+      context: ./user
+    working_dir: /app
+    command: sh -c "npm install && npm run start"
+    ports:
+      - "3004:3004"
+    volumes:
+      - ./user:/app
+
+  # Product Micro Frontend
+  product:
+    image: node:20.6.1
+    container_name: product
+    build:
+      context: ./product
+    working_dir: /app
+    command: sh -c "npm install && npm run start"
+    ports:
+      - "3002:3002"
+    volumes:
+      - ./product:/app
