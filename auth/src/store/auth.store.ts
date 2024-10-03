@@ -15,6 +15,8 @@ export const useAuthStore = defineStore("auth", {
   getters: {
     // check if user is logged in
     isLoggedIn: (state) => Boolean(state.accessToken),
+    // check if user is admin
+    isAdmin: (state) => Boolean(state.user?.role === "admin"),
     // get user data
     getIdentity: (state) => state.user,
     // get access token
