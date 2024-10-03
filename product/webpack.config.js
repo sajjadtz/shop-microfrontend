@@ -74,6 +74,7 @@ module.exports = (_, argv) => ({
       },
       exposes: {
         "./ProductList": "./src/components/product/product-list.vue",
+        "./ProductForm": "./src/components/product/product-form.vue",
       },
       shared: require("./package.json").dependencies,
     }),
