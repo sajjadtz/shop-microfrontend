@@ -1,6 +1,4 @@
 <template>
-  <!-- {{ cart }}
-  {{ cartItemCount }} -->
   <div
     class="card-shadow rounded-2xl flex flex-col md:h-[250px] h-[350px] overflow-hidden gap-1"
   >
@@ -16,6 +14,7 @@
       >
     </div>
     <n-button
+      v-if="cartItemCount === 0"
       strong
       secondary
       type="info"
@@ -26,8 +25,10 @@
             count: 1,
           })
       "
-      >add to cart {{ cartItemCount }}</n-button
     >
+      add to cart
+    </n-button>
+    <counter v-else :id="product.id" :count="cartItemCount" />
   </div>
 </template>
 
@@ -37,6 +38,7 @@ import { Product } from "../../composables/product/types/product.type";
 import { NButton } from "naive-ui";
 import { useCartStore } from "order/CartStore";
 import { useChangeItem } from "order/useCart";
+import Counter from "./counter.vue";
 
 const props = defineProps({
   product: Object as PropType<Product>,
@@ -49,6 +51,6 @@ const cart = computed(() => cartStore.getCart);
 const cartItemCount = computed(
   () =>
     cart.value?.items.find((item) => item.product.id === props.product.id)
-      ?.count
+      ?.count ?? 0
 );
 </script>
