@@ -1,9 +1,7 @@
 <template>
   <div class="flex flex-col gap-4">
     <template v-for="order in orders">
-      <div
-        class="border rounded-2xl flex md:items-center justify-between p-5 md:flex-row flex-col gap-4"
-      >
+      <div class="border rounded-2xl flex justify-between p-5 flex-col gap-4">
         <div class="flex gap-2 items-center overflow-x-auto flex-wrap">
           <template v-for="item in order.items">
             <n-image
@@ -27,11 +25,11 @@
 </template>
 
 <script setup lang="ts">
-import "../../index.scss";
 import { useGetOrderList } from "../../composables/order/useOrder";
 import { Order } from "../../composables/order/types/order.type";
 import { onMounted, ref } from "vue";
 import { NImage } from "naive-ui";
+import "../../index.scss";
 
 const { getOrderList } = useGetOrderList();
 const orders = ref<Order[]>([]);
