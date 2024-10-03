@@ -74,6 +74,8 @@ module.exports = (_, argv) => ({
       exposes: {
         "./useCart": "./src/composables/cart/useCart.ts",
         "./CartStore": "./src/store/cart.store.ts",
+        "./Cart": "./src/components/cart/cart.vue",
+        "./OrderList": "./src/components/order/order-list.vue",
       },
       shared: require("./package.json").dependencies,
     }),
