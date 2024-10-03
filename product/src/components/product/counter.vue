@@ -38,7 +38,10 @@ import { useChangeItem } from "order/useCart";
 
 const props = defineProps({
   id: String,
-  count: Number,
+  count: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const { handleChangeItem } = useChangeItem();

@@ -2,10 +2,12 @@
   <div
     class="card-shadow rounded-2xl flex flex-col md:h-[250px] h-[350px] overflow-hidden gap-1"
   >
-    <img
+    <n-image
       :src="product?.imageUrl"
       height="250"
-      class="overflow-hidden object-cover"
+      width="100%"
+      class="overflow-hidden "
+      object-fit="cover"
     />
     <div class="flex flex-col gap-1 p-3 pt-0">
       <span class="text-sm">{{ product?.name }}</span>
@@ -28,14 +30,14 @@
     >
       add to cart
     </n-button>
-    <counter v-else :id="product.id" :count="cartItemCount" />
+    <counter v-else :id="product!.id" :count="cartItemCount" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { PropType, computed, watch } from "vue";
 import { Product } from "../../composables/product/types/product.type";
-import { NButton } from "naive-ui";
+import { NButton, NImage } from "naive-ui";
 import { useCartStore } from "order/CartStore";
 import { useChangeItem } from "order/useCart";
 import Counter from "./counter.vue";
