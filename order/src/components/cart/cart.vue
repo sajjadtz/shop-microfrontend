@@ -34,8 +34,12 @@ import CartItem from "./cart-item.vue";
 import { computed } from "vue";
 import { useCheckoutCart } from "../../composables/cart/useCart";
 
+const props = defineProps({
+  checkoutCallbackFn: Function,
+});
+
 const cartStore = useCartStore();
-const { handleCheckoutCart } = useCheckoutCart();
+const { handleCheckoutCart } = useCheckoutCart(props.checkoutCallbackFn);
 
 const cart = computed(() => cartStore.getCart);
 </script>

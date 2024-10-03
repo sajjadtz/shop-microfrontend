@@ -1,5 +1,8 @@
 import { useCartStore } from "../../store/cart.store";
-import { useChangeItemService, useCheckoutCartService } from "./useCart.service";
+import {
+  useChangeItemService,
+  useCheckoutCartService,
+} from "./useCart.service";
 
 export const useChangeItem = () => {
   const handleChangeItem = async (body: {
@@ -21,7 +24,7 @@ export const useChangeItem = () => {
   };
 };
 
-export const useCheckoutCart = ()=>{
+export const useCheckoutCart = (callbackFn?: Function) => {
   const handleCheckoutCart = async () => {
     const fetchData = useCheckoutCartService();
     const cartStore = useCartStore();
@@ -30,10 +33,12 @@ export const useCheckoutCart = ()=>{
 
     if (response) {
       cartStore.setCart(response);
+      if (callbackFn) callbackFn();
     }
+    return response;
   };
 
   return {
     handleCheckoutCart,
   };
-}
+};
