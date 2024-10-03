@@ -11,3 +11,7 @@ export const useChangeItemService = (data: {
 }) => {
   return useFetchData<Cart>(`/v1/cart`, { data, method: "post" }, true);
 };
+
+export const useCheckoutCartService = () => {
+  return useFetchData<Cart>(`/v1/cart/checkout`, { method: "post" }, true);
+};

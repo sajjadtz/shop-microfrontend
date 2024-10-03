@@ -1,5 +1,5 @@
 import { useCartStore } from "../../store/cart.store";
-import { useChangeItemService } from "./useCart.service";
+import { useChangeItemService, useCheckoutCartService } from "./useCart.service";
 
 export const useChangeItem = () => {
   const handleChangeItem = async (body: {
@@ -20,3 +20,20 @@ export const useChangeItem = () => {
     handleChangeItem,
   };
 };
+
+export const useCheckoutCart = ()=>{
+  const handleCheckoutCart = async () => {
+    const fetchData = useCheckoutCartService();
+    const cartStore = useCartStore();
+
+    const response = await fetchData();
+
+    if (response) {
+      cartStore.setCart(response);
+    }
+  };
+
+  return {
+    handleCheckoutCart,
+  };
+}
