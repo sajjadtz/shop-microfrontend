@@ -8,8 +8,9 @@
           'text-3xl text-neutral-700',
           path.fullPath !== '/' ? 'material-icons-outlined' : 'material-icons',
         ]"
-        >home</span
       >
+        home
+      </span>
     </RouterLink>
     <RouterLink to="/cart">
       <span
@@ -19,8 +20,21 @@
             ? 'material-icons-outlined'
             : 'material-icons',
         ]"
-        >shopping_cart</span
       >
+        shopping_cart
+      </span>
+    </RouterLink>
+    <RouterLink to="/orders">
+      <span
+        :class="[
+          'text-3xl text-neutral-700',
+          path.fullPath !== '/orders'
+            ? 'material-icons-outlined'
+            : 'material-icons',
+        ]"
+      >
+        receipt_long
+      </span>
     </RouterLink>
     <RouterLink :to="authStore.isLoggedIn ? '/profile' : '/login'">
       <span
@@ -30,8 +44,9 @@
             ? 'material-icons-outlined'
             : 'material-icons',
         ]"
-        >person</span
       >
+        person
+      </span>
     </RouterLink>
   </div>
 </template>
