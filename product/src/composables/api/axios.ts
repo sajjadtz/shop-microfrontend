@@ -37,7 +37,7 @@ export const useFetchData = <R>(
 
   const fetchData = (): Promise<R> =>
     axiosClient<R>(config).then((res) => {
-      return res.data;
+      return res?.data;
     });
 
   return fetchData;
