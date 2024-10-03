@@ -17,7 +17,7 @@ axiosClient.interceptors.response.use(
 
     // if error code is 401(UnAuthorized) logout the user(clear the global store)
     if (error.response?.status === 401) {
-      authStore.logout();
+      return authStore.logout();
     }
 
     return Promise.reject(error);
