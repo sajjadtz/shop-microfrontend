@@ -17,6 +17,7 @@
     </div>
     <n-button
       v-if="cartItemCount === 0"
+      :disabled="!authStore.isLoggedIn"
       strong
       secondary
       type="info"
@@ -40,12 +41,14 @@ import { Product } from "../../composables/product/types/product.type";
 import { NButton, NImage } from "naive-ui";
 import { useCartStore } from "order/CartStore";
 import { useChangeItem } from "order/useCart";
+import { useAuthStore } from "auth/AuthStore";
 import Counter from "./counter.vue";
 
 const props = defineProps({
   product: Object as PropType<Product>,
 });
 
+const authStore = useAuthStore();
 const cartStore = useCartStore();
 const { handleChangeItem } = useChangeItem();
 const cart = computed(() => cartStore.getCart);

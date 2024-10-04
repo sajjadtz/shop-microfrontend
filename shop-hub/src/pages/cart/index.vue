@@ -8,10 +8,18 @@
 import Cart from "order/Cart";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "auth/AuthStore";
-import { watch } from "vue";
+import { useCartStore } from "order/CartStore";
+import { onMounted, watch } from "vue";
 
 const router = useRouter();
 const authStore = useAuthStore();
+
+const cartStore = useCartStore();
+
+onMounted(() => {
+  if (!cartStore.getCart && !cartStore.isLoading)
+    cartStore.fetchAndSetCartData();
+});
 
 watch(
   authStore,
@@ -20,7 +28,6 @@ watch(
   },
   { immediate: true, deep: true }
 );
-
 
 const checkoutCallbackFn = () => {
   router.push("orders");

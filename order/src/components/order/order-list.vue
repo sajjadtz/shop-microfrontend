@@ -1,5 +1,8 @@
 <template>
   <div class="flex flex-col gap-4">
+    <span v-if="orders.length===0">
+      There is no order
+    </span>
     <template v-for="order in orders">
       <div class="border rounded-2xl flex justify-between p-5 flex-col gap-4">
         <div class="flex gap-2 items-center overflow-x-auto flex-wrap">
